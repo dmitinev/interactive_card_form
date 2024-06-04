@@ -1,0 +1,19 @@
+@mixin hover {
+  @media (any-hover: hover) {
+    @content;
+  }
+}
+
+@mixin pc_display {
+  @media (width >= 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet_display {
+  @media (width >= 767px) {
+    @content;
+  }
+}
+
+// change display width to needed values
