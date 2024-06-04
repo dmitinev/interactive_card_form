@@ -1,5 +1,10 @@
+import { Container } from '../Container';
 import './App.module.scss';
 
 export const App = () => {
-  return <div data-testid="app"></div>;
+  return (
+    <Container>
+      <div data-testid="app"></div>
+    </Container>
+  );
 };

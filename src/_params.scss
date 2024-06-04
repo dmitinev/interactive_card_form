@@ -5,7 +5,7 @@
 }
 
 @mixin pc_display {
-  @media (width >= 1024px) {
+  @media (width >= 1440px) {
     @content;
   }
 }
@@ -17,3 +17,9 @@
 }
 
 // change display width to needed values
+
+$inputErrorColor: hsl(0, 100%, 66%);
+$white: hsl(0, 0%, 100%);
+$lightGreyishViolet: hsl(270, 3%, 87%);
+$DarkGreyishViolet: hsl(279, 6%, 55%);
+$veryDarkViolet: hsl(278, 68%, 11%);
