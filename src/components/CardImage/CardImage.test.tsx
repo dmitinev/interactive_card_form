@@ -8,5 +8,7 @@ describe('CardImage', () => {
     render(<CardImage url={url} />);
     const imageElement = screen.getByAltText('credit card');
     expect(imageElement).toHaveAttribute('src', url);
+    expect(imageElement).toHaveAttribute('alt', 'credit card');
   });
 });
+

@@ -1,4 +1,4 @@
-import {screen} from '@testing-library/react';
+import {screen, render} from '@testing-library/react';
 
 import {TemplateName} from './TemplateName';
 

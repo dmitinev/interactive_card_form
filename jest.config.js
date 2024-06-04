@@ -1,5 +1,8 @@
 /** @type {import("jest").Config} */
 export default {
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.tsx', '!src/main.tsx', '!src/**/index.ts'],
+  coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
@@ -9,7 +12,11 @@ export default {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     '^.+\\.svg$': 'jest-transformer-svg',
   },
-  modulePathIgnorePatterns: ['<rootDir>/templates/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/templates/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/dist/',
+  ],
 
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
