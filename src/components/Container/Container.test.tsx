@@ -10,6 +10,7 @@ describe('Container', () => {
     );
     const linkElement = screen.getByTestId('child');
     expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveTextContent('');
   });
 });
 
