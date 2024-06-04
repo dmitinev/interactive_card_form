@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --fix",
-    "test": "jest",
+    "test": "jest --config jest.config.js",
     "preview": "vite preview",
     "component": "generate-react component"
   },

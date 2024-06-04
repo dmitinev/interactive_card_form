@@ -45,5 +45,5 @@ export default defineConfig({
       },
     },
   },
+  base: '/interactive_card_form/',
 });
-
