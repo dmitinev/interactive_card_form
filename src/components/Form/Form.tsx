@@ -20,7 +20,7 @@ export const BaseForm = () => {
       <header className={styles.form__formHeader}>
         <div className={containerClasses}>
           <div className={`${styles.form__image} ${styles.imageBack}`}>
-            <CardImage url={backImage} />
+            <CardImage url={backImage} back />
           </div>
           <div className={`${styles.form__image} ${styles.imageFront}`}>
             <CardImage url={frontImage} />

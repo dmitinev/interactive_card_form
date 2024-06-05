@@ -1,4 +1,4 @@
 {
-  "*.+(ts|tsx)": ["eslint --fix", "npm run test --passWithNoTests"]
+  "*.+(ts|tsx)": ["eslint --fix", "prettier --fix"]
 }
 

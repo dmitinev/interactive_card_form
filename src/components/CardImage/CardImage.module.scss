@@ -1,2 +1,60 @@
-.cardImage {
+.card {
+  position: relative;
+  &__logo {
+    position: absolute;
+    top: 19px;
+    left: 19px;
+    max-height: 30px;
+    @include tablet_display {
+      max-height: 40px;
+    }
+    @include pc_display {
+      max-height: 45px;
+    }
+  }
+  &__number {
+    position: absolute;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 2.2px;
+    @include tablet_display {
+      font-size: 23px;
+    }
+  }
+
+  &__cvc {
+    position: absolute;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 500;
+    top: 49%;
+    transform: translateY(-49%);
+    right: 30px;
+    letter-spacing: 2.2px;
+    @include tablet_display {
+      font-size: 13px;
+      top: 48%;
+      transform: translateY(-48%);
+    }
+  }
+
+  &__holderInfo {
+    position: absolute;
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 1.29px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    @include tablet_display {
+      font-size: 12px;
+    }
+  }
 }
