@@ -1,5 +1,19 @@
 .card {
   position: relative;
+  &__image {
+    width: 285px;
+    height: auto;
+    max-inline-size: unset;
+    max-block-size: unset;
+    @include tablet_display {
+      width: 340px;
+      height: auto;
+    }
+    @include pc_display {
+      width: 447px;
+      height: auto;
+    }
+  }
   &__logo {
     position: absolute;
     top: 19px;
@@ -10,6 +24,9 @@
     }
     @include pc_display {
       max-height: 45px;
+    }
+    @include pc_display {
+      max-height: 47px;
     }
   }
   &__number {
@@ -23,6 +40,10 @@
     letter-spacing: 2.2px;
     @include tablet_display {
       font-size: 23px;
+    }
+    @include pc_display {
+      font-size: 28px;
+      bottom: 70px;
     }
   }
 
@@ -38,7 +59,12 @@
     @include tablet_display {
       font-size: 13px;
       top: 48%;
+      right: 37px;
       transform: translateY(-48%);
+    }
+    @include pc_display {
+      font-size: 14px;
+      right: 57px;
     }
   }
 
@@ -55,6 +81,11 @@
     width: 85%;
     @include tablet_display {
       font-size: 12px;
+      bottom: 22px;
+    }
+    @include pc_display {
+      font-size: 14px;
+      bottom: 26px;
     }
   }
 }

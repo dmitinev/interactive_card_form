@@ -4,15 +4,7 @@
   flex-direction: column;
   @include pc_display {
     display: grid;
-    grid-template-columns: 40% 60%;
-  }
-  &__image {
-    width: 285px;
-    height: auto;
-    @include tablet_display {
-      width: 340px;
-      height: auto;
-    }
+    grid-template-columns: 35% 65%;
   }
   &__formHeader {
     grid-column: 1/2;
@@ -44,11 +36,16 @@
       justify-content: center;
       align-items: center;
       gap: 26px;
+      @include pc_display {
+        gap: 28px;
+      }
     }
   }
 
   &__formBlock {
     width: 100%;
+    max-width: 381px;
+    position: relative;
     @include tablet_display {
       width: 64%;
     }
@@ -74,11 +71,35 @@
           font-weight: 500;
           color: $lightGreyishViolet;
         }
+        &:focus {
+          border-image-source: linear-gradient(
+            112deg,
+            #6348fe -27%,
+            #610595 5%
+          );
+          border-image-slice: 1;
+          background-image: linear-gradient(to bottom, #fff, #fff),
+            linear-gradient(112deg, #6348fe -27%, #610595 5%);
+          background-clip: padding-box, border-box;
+        }
+      }
+    }
+    &__rowField {
+      position: relative;
+      &:nth-child(1) {
+        grid-column: 1/2;
+      }
+      &:nth-child(2) {
+        grid-column: 2/3;
+      }
+      &:nth-child(3) {
+        grid-column: 3/4;
       }
     }
   }
   &__submit {
     color: $white;
+    max-width: 381px;
     background-color: $veryDarkViolet;
     display: flex;
     justify-content: center;
@@ -93,6 +114,11 @@
       width: 64%;
     }
   }
+  &__rowBlock {
+    display: grid;
+    grid-template-columns: 25% 25% 1fr;
+    grid-column-gap: 8px;
+  }
 }
 
 .imageBack {
@@ -105,7 +131,7 @@
     top: 9%;
   }
   @include pc_display {
-    bottom: 26%;
+    bottom: 21%;
     top: unset;
     right: 0;
     left: unset;
@@ -123,7 +149,16 @@
   @include pc_display {
     bottom: unset;
     right: unset;
-    top: 26%;
-    left: 91%;
+    top: 21%;
+    left: 85%;
   }
+}
+
+.formError {
+  color: $inputErrorColor;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
 }
