@@ -1,7 +1,12 @@
 /** @type {import("jest").Config} */
 export default {
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.tsx', '!src/main.tsx', '!src/**/index.ts'],
+  collectCoverageFrom: [
+    'src/**/*.tsx',
+    '!src/main.tsx',
+    '!src/**/index.ts',
+    '!src/helpers/**',
+  ],
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   transform: {

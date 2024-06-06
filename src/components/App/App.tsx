@@ -1,10 +1,10 @@
-import { BaseForm } from '../Form';
+import { FormikForm } from '../Form';
 import './App.module.scss';
 
 export const App = () => {
   return (
     <div data-testid="app">
-      <BaseForm />
+      <FormikForm />
     </div>
   );
 };

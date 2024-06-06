@@ -1,6 +1,11 @@
 .form {
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  @include pc_display {
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
   &__image {
     width: 285px;
     height: auto;
@@ -10,6 +15,7 @@
     }
   }
   &__formHeader {
+    grid-column: 1/2;
     background-image: url('../../assets/bg-main-mobile.png');
     @include pc_display {
       background-image: url('../../assets/bg-main-desktop.png');
@@ -26,6 +32,67 @@
       position: relative;
     }
   }
+  &__fieldsBlock {
+    margin-top: 115px;
+    @include pc_display {
+      grid-column: 2/3;
+      margin: auto 0;
+    }
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+    }
+  }
+
+  &__formBlock {
+    width: 100%;
+    @include tablet_display {
+      width: 64%;
+    }
+    &__field {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      & label {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      & input {
+        width: 100%;
+        flex: 1 1 auto;
+        border: 1px solid #dfdee0;
+        border-radius: 8px;
+        background-color: $white;
+        padding: 11px 16px 11px 16px;
+        &::placeholder {
+          font-size: 18px;
+          font-weight: 500;
+          color: $lightGreyishViolet;
+        }
+      }
+    }
+  }
+  &__submit {
+    color: $white;
+    background-color: $veryDarkViolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 53px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    cursor: pointer;
+    @include tablet_display {
+      width: 64%;
+    }
+  }
 }
 
 .imageBack {
@@ -37,6 +104,12 @@
   @include tablet_display {
     top: 9%;
   }
+  @include pc_display {
+    bottom: 26%;
+    top: unset;
+    right: 0;
+    left: unset;
+  }
 }
 .imageFront {
   z-index: 1;
@@ -46,5 +119,11 @@
   transform: translateX(-50%);
   @include tablet_display {
     bottom: -78px;
+  }
+  @include pc_display {
+    bottom: unset;
+    right: unset;
+    top: 26%;
+    left: 91%;
   }
 }
