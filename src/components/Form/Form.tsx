@@ -196,8 +196,5 @@ export const FormikForm = withFormik<object, FormValues>({
       cardCvc: Yup.number().required('Can’t be blank').integer(),
     });
   },
-  handleSubmit: (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-  },
+  handleSubmit: () => {},
 })(BaseForm);
