@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
+import cardLogo from '../../assets/card-logo.svg';
 import { CardImage } from './CardImage';
 
 jest.mock('formik', () => ({
@@ -17,11 +17,14 @@ jest.mock('formik', () => ({
 
 describe('CardImage', () => {
   it('renders CardImage component with image url prop', () => {
-    const url = 'https://www.example.com/image.png';
-    render(<CardImage url={url} />);
-
+    render(<CardImage url={cardLogo} />);
+    const cardNumberElement = screen.getByText(/1234 5678 9123 4567/i);
+    const cardName = screen.getByText(/jane appleseed/i);
+    const cardDate = screen.getByText(/12\/23/i);
     const imageElement = screen.getByAltText('credit card');
-    expect(imageElement).toHaveAttribute('src', url);
     expect(imageElement).toHaveAttribute('alt', 'credit card');
+    expect(cardNumberElement).toBeInTheDocument();
+    expect(cardName).toBeInTheDocument();
+    expect(cardDate).toBeInTheDocument();
   });
 });

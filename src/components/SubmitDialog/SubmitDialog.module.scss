@@ -1,0 +1,43 @@
+.submitDialog {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__logo {
+    margin-bottom: 35px;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 3.42px;
+    margin-bottom: 16px;
+  }
+  &__text {
+    font-size: 18px;
+    font-weight: 400;
+    color: $DarkGreyishViolet;
+    margin-bottom: 48px;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $veryDarkViolet;
+    border-radius: 8px;
+    width: 100%;
+    color: $white;
+    cursor: pointer;
+    min-height: 53px;
+    @include tablet_display {
+      min-width: 320px;
+    }
+    @include pc_display {
+      min-width: 381px;
+    }
+  }
+}
