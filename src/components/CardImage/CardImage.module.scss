@@ -35,11 +35,14 @@
     font-size: 18px;
     font-weight: 400;
     bottom: 48px;
+    display: flex;
+    justify-content: center;
     left: 50%;
+    width: 80%;
     transform: translateX(-50%);
     letter-spacing: 2.2px;
     @include tablet_display {
-      font-size: 23px;
+      font-size: 22px;
     }
     @include pc_display {
       font-size: 28px;

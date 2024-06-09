@@ -46,6 +46,11 @@ export const BaseForm = ({ errors, touched }: FormikProps<FormValues>) => {
                 name="cardholderName"
                 id="cardholderName"
                 placeholder="e.g. Jane Appleseed"
+                className={
+                  errors.cardholderName && touched.cardholderName
+                    ? styles.formErrorField
+                    : ''
+                }
               />
             </div>
             {errors.cardholderName && touched.cardholderName && (
@@ -60,6 +65,11 @@ export const BaseForm = ({ errors, touched }: FormikProps<FormValues>) => {
                 name="cardNumber"
                 id="cardNumber"
                 placeholder="e.g. 1234 5678 9123 0000"
+                className={
+                  errors.cardNumber && touched.cardNumber
+                    ? styles.formErrorField
+                    : ''
+                }
               />
             </div>
             {errors.cardNumber && touched.cardNumber && (
@@ -76,13 +86,17 @@ export const BaseForm = ({ errors, touched }: FormikProps<FormValues>) => {
                     name="expireDateMonth"
                     id="expireDateMonth"
                     placeholder="MM"
+                    className={
+                      errors.expireDateMonth && touched.expireDateMonth
+                        ? styles.formErrorField
+                        : ''
+                    }
                   />
                 </div>
                 {errors.expireDateMonth && touched.expireDateMonth && (
                   <div className={styles.formError}>Can’t be blank</div>
                 )}
               </div>
-
               <div className={styles.form__formBlock__rowField}>
                 <div className={styles.form__formBlock__field}>
                   <label htmlFor="expireDateYear">(MM/YY)</label>
@@ -91,6 +105,11 @@ export const BaseForm = ({ errors, touched }: FormikProps<FormValues>) => {
                     name="expireDateYear"
                     id="expireDateYear"
                     placeholder="YY"
+                    className={
+                      errors.expireDateYear && touched.expireDateYear
+                        ? styles.formErrorField
+                        : ''
+                    }
                   />
                 </div>
                 {errors.expireDateYear && touched.expireDateYear && (
@@ -105,6 +124,11 @@ export const BaseForm = ({ errors, touched }: FormikProps<FormValues>) => {
                     name="cardCvc"
                     id="cardCvc"
                     placeholder="e.g. 123"
+                    className={
+                      errors.cardCvc && touched.cardCvc
+                        ? styles.formErrorField
+                        : ''
+                    }
                   />
                 </div>
                 {errors.cardCvc && touched.cardCvc && (
