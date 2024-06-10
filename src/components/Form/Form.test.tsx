@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FormikForm as Form } from './Form';
 
@@ -31,17 +31,19 @@ describe('Form', () => {
     });
     const cvcField = screen.getByRole('textbox', { name: /cvc/i });
 
-    await userEvent.type(cardholderNameField, 'John Doe');
-    await userEvent.type(cardNumberField, '1234567812321234');
-    await userEvent.type(expireDateMonthField, '12');
-    await userEvent.type(expireDateYearField, '23');
-    await userEvent.type(cvcField, '123');
+    await waitFor(async () => {
+      await userEvent.type(cardholderNameField, 'John Doe');
+      await userEvent.type(cardNumberField, '1234567812321234');
+      await userEvent.type(expireDateMonthField, '12');
+      await userEvent.type(expireDateYearField, '23');
+      await userEvent.type(cvcField, '123');
 
-    expect(cardholderNameField).toHaveValue('John Doe');
-    expect(cardNumberField).toHaveValue('1234567812321234');
-    expect(expireDateMonthField).toHaveValue('12');
-    expect(expireDateYearField).toHaveValue('23');
-    expect(cvcField).toHaveValue('123');
+      expect(cardholderNameField).toHaveValue('John Doe');
+      expect(cardNumberField).toHaveValue('1234567812321234');
+      expect(expireDateMonthField).toHaveValue('12');
+      expect(expireDateYearField).toHaveValue('23');
+      expect(cvcField).toHaveValue('123');
+    });
   });
 
   it('submits the form successfully', async () => {
@@ -61,16 +63,31 @@ describe('Form', () => {
     const cvcField = screen.getByRole('textbox', { name: /cvc/i });
     const submitButton = screen.getByRole('button', { name: /confirm/i });
 
-    await userEvent.type(cardholderNameField, 'John Doe');
-    await userEvent.type(cardNumberField, '1234567812321234');
-    await userEvent.type(expireDateMonthField, '12');
-    await userEvent.type(expireDateYearField, '23');
-    await userEvent.type(cvcField, '123');
+    await waitFor(async () => {
+      await userEvent.type(cardholderNameField, 'John Doe');
+      await userEvent.type(cardNumberField, '1234567812321234');
+      await userEvent.type(expireDateMonthField, '12');
+      await userEvent.type(expireDateYearField, '23');
+      await userEvent.type(cvcField, '123');
+      userEvent.click(submitButton);
+
+      const submitDialog = await screen.findByAltText(/success logo/i);
+      const successText = screen.getByText(/THANK YOU!/i);
+      expect(submitDialog).toBeInTheDocument();
+      expect(successText).toBeInTheDocument();
+    });
+  });
+  it('shows error message when form fields are empty', async () => {
+    render(<Form />);
+    const submitButton = screen.getByRole('button', { name: /confirm/i });
     userEvent.click(submitButton);
 
-    const submitDialog = await screen.findByAltText(/success logo/i);
-    const successText = screen.getByText(/THANK YOU!/i);
-    expect(submitDialog).toBeInTheDocument();
-    expect(successText).toBeInTheDocument();
+    await waitFor(async () => {
+      const elementsForError = await screen.findAllByText(/can/i);
+      const cardNumberError = await screen.findByText(/wrong format/i);
+
+      expect(elementsForError).toHaveLength(4);
+      expect(cardNumberError).toBeInTheDocument();
+    });
   });
 });
