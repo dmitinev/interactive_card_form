@@ -7,7 +7,6 @@ import frontImage from '../../assets/bg-card-front.png';
 import { CardImage } from '../CardImage';
 import { SubmitDialog } from '../SubmitDialog';
 import styles from './Form.module.scss';
-
 export interface FormValues {
   cardholderName: string;
   cardNumber: number | string;
@@ -54,7 +53,7 @@ export const BaseForm = ({
         </div>
       </header>
       {!submitted && (
-        <section className={styles.form__fieldsBlock}>
+        <section data-testid="formFields" className={styles.form__fieldsBlock}>
           <div className={containerClassesForm}>
             <div className={styles.form__formBlock}>
               <div className={styles.form__formBlock__field}>
