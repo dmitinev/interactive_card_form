@@ -1,9 +1,11 @@
+import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
 import successImg from '../../assets/icon-complete.svg';
 import styles from './SubmitDialog.module.scss';
 
-export const SubmitDialog = () => {
+export const SubmitDialog = forwardRef<HTMLElement>(({}, ref) => {
   return (
-    <section className={`${styles.submitDialog} container`}>
+    <section ref={ref} className={`${styles.submitDialog} container`}>
       <div className={styles.submitDialog__wrapper}>
         <img
           src={successImg}
@@ -20,4 +22,6 @@ export const SubmitDialog = () => {
       </div>
     </section>
   );
-};
+});
+
+export const MSubmitDialog = motion(SubmitDialog);

@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { Field, Form, FormikProps, withFormik } from 'formik';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import backImage from '../../assets/bg-card-back.png';
 import frontImage from '../../assets/bg-card-front.png';
 import { CardImage } from '../CardImage';
-import { SubmitDialog } from '../SubmitDialog';
+import { MSubmitDialog } from '../SubmitDialog';
 import styles from './Form.module.scss';
 export interface FormValues {
   cardholderName: string;
@@ -53,116 +54,134 @@ export const BaseForm = ({
         </div>
       </header>
       {!submitted && (
-        <section data-testid="formFields" className={styles.form__fieldsBlock}>
-          <div className={containerClassesForm}>
-            <div className={styles.form__formBlock}>
-              <div className={styles.form__formBlock__field}>
-                <label htmlFor="cardholderName">Cardholder's Name</label>
-                <Field
-                  type="text"
-                  name="cardholderName"
-                  id="cardholderName"
-                  placeholder="e.g. Jane Appleseed"
-                  className={
-                    errors.cardholderName && touched.cardholderName
-                      ? styles.formErrorField
-                      : ''
-                  }
-                />
+        <AnimatePresence>
+          <motion.section
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.4 }}
+            data-testid="formFields"
+            className={styles.form__fieldsBlock}
+          >
+            <div className={containerClassesForm}>
+              <div className={styles.form__formBlock}>
+                <div className={styles.form__formBlock__field}>
+                  <label htmlFor="cardholderName">Cardholder's Name</label>
+                  <Field
+                    type="text"
+                    name="cardholderName"
+                    id="cardholderName"
+                    placeholder="e.g. Jane Appleseed"
+                    className={
+                      errors.cardholderName && touched.cardholderName
+                        ? styles.formErrorField
+                        : ''
+                    }
+                  />
+                </div>
+                {errors.cardholderName && touched.cardholderName && (
+                  <div className={styles.formError}>Can not be empty</div>
+                )}
               </div>
-              {errors.cardholderName && touched.cardholderName && (
-                <div className={styles.formError}>Can not be empty</div>
-              )}
-            </div>
-            <div className={styles.form__formBlock}>
-              <div className={styles.form__formBlock__field}>
-                <label htmlFor="cardNumber">Card Number</label>
-                <Field
-                  type="text"
-                  name="cardNumber"
-                  id="cardNumber"
-                  placeholder="e.g. 1234 5678 9123 0000"
-                  className={
-                    errors.cardNumber && touched.cardNumber
-                      ? styles.formErrorField
-                      : ''
-                  }
-                />
+              <div className={styles.form__formBlock}>
+                <div className={styles.form__formBlock__field}>
+                  <label htmlFor="cardNumber">Card Number</label>
+                  <Field
+                    type="text"
+                    name="cardNumber"
+                    id="cardNumber"
+                    placeholder="e.g. 1234 5678 9123 0000"
+                    className={
+                      errors.cardNumber && touched.cardNumber
+                        ? styles.formErrorField
+                        : ''
+                    }
+                  />
+                </div>
+                {errors.cardNumber && touched.cardNumber && (
+                  <div className={styles.formError}>
+                    Wrong format, numbers only
+                  </div>
+                )}
               </div>
-              {errors.cardNumber && touched.cardNumber && (
-                <div className={styles.formError}>
-                  Wrong format, numbers only
-                </div>
-              )}
-            </div>
-            <div className={styles.form__formBlock}>
-              <div className={styles.form__rowBlock}>
-                <div className={styles.form__formBlock__rowField}>
-                  <div className={styles.form__formBlock__field}>
-                    <label htmlFor="expireDateMonth">EXP. DATE</label>
-                    <Field
-                      type="text"
-                      name="expireDateMonth"
-                      id="expireDateMonth"
-                      placeholder="MM"
-                      className={
-                        errors.expireDateMonth && touched.expireDateMonth
-                          ? styles.formErrorField
-                          : ''
-                      }
-                    />
+              <div className={styles.form__formBlock}>
+                <div className={styles.form__rowBlock}>
+                  <div className={styles.form__formBlock__rowField}>
+                    <div className={styles.form__formBlock__field}>
+                      <label htmlFor="expireDateMonth">EXP. DATE</label>
+                      <Field
+                        type="text"
+                        name="expireDateMonth"
+                        id="expireDateMonth"
+                        placeholder="MM"
+                        className={
+                          errors.expireDateMonth && touched.expireDateMonth
+                            ? styles.formErrorField
+                            : ''
+                        }
+                      />
+                    </div>
+                    {errors.expireDateMonth && touched.expireDateMonth && (
+                      <div className={styles.formError}>Can’t be blank</div>
+                    )}
                   </div>
-                  {errors.expireDateMonth && touched.expireDateMonth && (
-                    <div className={styles.formError}>Can’t be blank</div>
-                  )}
-                </div>
-                <div className={styles.form__formBlock__rowField}>
-                  <div className={styles.form__formBlock__field}>
-                    <label htmlFor="expireDateYear">(MM/YY)</label>
-                    <Field
-                      type="text"
-                      name="expireDateYear"
-                      id="expireDateYear"
-                      placeholder="YY"
-                      className={
-                        errors.expireDateYear && touched.expireDateYear
-                          ? styles.formErrorField
-                          : ''
-                      }
-                    />
+                  <div className={styles.form__formBlock__rowField}>
+                    <div className={styles.form__formBlock__field}>
+                      <label htmlFor="expireDateYear">(MM/YY)</label>
+                      <Field
+                        type="text"
+                        name="expireDateYear"
+                        id="expireDateYear"
+                        placeholder="YY"
+                        className={
+                          errors.expireDateYear && touched.expireDateYear
+                            ? styles.formErrorField
+                            : ''
+                        }
+                      />
+                    </div>
+                    {errors.expireDateYear && touched.expireDateYear && (
+                      <div className={styles.formError}>Can’t be blank</div>
+                    )}
                   </div>
-                  {errors.expireDateYear && touched.expireDateYear && (
-                    <div className={styles.formError}>Can’t be blank</div>
-                  )}
-                </div>
-                <div className={styles.form__formBlock__rowField}>
-                  <div className={styles.form__formBlock__field}>
-                    <label htmlFor="cardCvc">CVC</label>
-                    <Field
-                      type="text"
-                      name="cardCvc"
-                      id="cardCvc"
-                      placeholder="e.g. 123"
-                      className={
-                        errors.cardCvc && touched.cardCvc
-                          ? styles.formErrorField
-                          : ''
-                      }
-                    />
+                  <div className={styles.form__formBlock__rowField}>
+                    <div className={styles.form__formBlock__field}>
+                      <label htmlFor="cardCvc">CVC</label>
+                      <Field
+                        type="text"
+                        name="cardCvc"
+                        id="cardCvc"
+                        placeholder="e.g. 123"
+                        className={
+                          errors.cardCvc && touched.cardCvc
+                            ? styles.formErrorField
+                            : ''
+                        }
+                      />
+                    </div>
+                    {errors.cardCvc && touched.cardCvc && (
+                      <div className={styles.formError}>Can’t be blank</div>
+                    )}
                   </div>
-                  {errors.cardCvc && touched.cardCvc && (
-                    <div className={styles.formError}>Can’t be blank</div>
-                  )}
                 </div>
               </div>
+              <button type="submit" className={styles.form__submit}>
+                Confirm
+              </button>
             </div>
-            <button type="submit" className={styles.form__submit}>
-              Confirm
-            </button>
-          </div>
-        </section>
+          </motion.section>
+        </AnimatePresence>
       )}
-      {submitted && <SubmitDialog />}
+      {submitted && (
+        <AnimatePresence>
+          <MSubmitDialog
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.4 }}
+          />
+        </AnimatePresence>
+      )}
     </Form>
   );
 };
